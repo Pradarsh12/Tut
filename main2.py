@@ -756,12 +756,66 @@ async def account_login(bot: Client, m: Message):
 
 
 
-#   CAREERWILL DOWNLOADER  BOT 
+# VISION PDF DOWNLOADER
 
 
 
 
 
+
+
+@bot.on_message(filters.command('pdf'))
+async def vision_pdf(bot: Client, m: Message):
+    editable = await m.reply_text("**Hello DeAr,** I am Text File Downloader Bot.\nI can download **PDFs of vision** from text file one by one.\n\n**Developer: Smile Bhai** \n**Language:** Python\n**Framework:** 🔥Pyrogram\n\nNow Send Your **TXT File:-**\n")
+    input: Message = await bot.listen(editable.chat.id)
+    if 2 + 2 == 4: #hehe
+        x = await input.download()
+        await input.delete(True)
+
+        path = f"./downloads/{m.chat.id}"
+
+        try:
+            with open(x, "r") as f:
+                content = f.read()
+            content = content.split("\n")
+
+            links = []
+            for i in content:
+                links.append(i.split(":", 1))
+            os.remove(x)
+        except:
+            await m.reply_text("Invalid file input.☹️")
+            os.remove(x)
+            return
+            
+    editable = await m.reply_text(f"Total links found are {len(links)}\n\nSend From where you want to download,\n\nInitial is 0")
+    input1: Message = await bot.listen(editable.chat.id)
+    count = input1.text
+    count = int(count)      	
+    	            
+    await m.reply_text("**Enter Batch Name**")
+    inputy: Message = await bot.listen(editable.chat.id)
+    raw_texty = inputy.text
+
+    await m.reply_text("**Enter Cookie**")
+    input2: Message = await bot.listen(editable.chat.id)
+    cookie = input2.text
+    cookies = cookies = {'PHPSESSID': f'{cookie}'}
+        
+    try:
+        for i in range(count, len(links)):
+
+            url = links[i][1]
+            name1 = links[i][0].replace("\t", "").replace(":", "").replace("/","").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").strip()[:57]
+            name = f'{str(count).zfill(3)}) {name1}'
+            cc = f'{str(count).zfill(3)}. {name1} {res}.pdf\n\n**Batch:-** {raw_text0}\n\n'
+            ka = await helper.vision(url, name, cookies)
+            await m.reply_document(ka, caption=cc)
+            count += 1
+            os.remove(ka)
+            time.sleep(3)
+    except Exception as e:
+        await m.reply_text(e)
 
 
 
