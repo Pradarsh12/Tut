@@ -42,13 +42,13 @@ import os
 
 bot = Client(
     "txt",
-    bot_token="5860648179:AAHX9pDg4CeRsO2_n4BVxe9gBwU3MfzWwGI",
-    api_id=12442923,
-    api_hash="f6ba39a61d8da34a9d0779cf120a27f0"
+    bot_token="5994063715:AAG5TpTgHBJIUTHzTf03qGqShpGnUfsrP5U",
+    api_id=23161785,
+    api_hash="72e2c9ff7f587a134a46fe99708e3194"
 )
-auth_users = 5496342413
+auth_users = 6010304291
 sudo_users = auth_users
-sudo_groups = -1001878747713
+sudo_groups = -1001701312669
 
 @bot.on_message(filters.command(["start"])&  (filters.chat(sudo_groups)))
 async def account_login(bot: Client, m: Message):
